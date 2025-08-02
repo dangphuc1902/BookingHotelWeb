@@ -67,7 +67,7 @@ public class RoomController {
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/room/{id}")
     public ResponseEntity<?>getRoomById(@PathVariable int id){
         BaseResponse baseResponse = new BaseResponse();
         RoomDTO roomDTO = roomServiceImp.getRoomById(id);

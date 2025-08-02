@@ -1,5 +1,6 @@
 package com.bookinghotel.bookinghotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +12,57 @@ import java.util.ArrayList;
 import java.util.List;
 @Setter
 @Getter
-@Entity(name = "rooms")
+@Entity(name = "room")
 public class RoomEntity {
-    @Id
+    public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+
+
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	public List<BookingEntity> getBookings() {
+		return bookings;
+	}
+
+
+	public void setBookings(List<BookingEntity> bookings) {
+		this.bookings = bookings;
+	}
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "room_type")
@@ -60,8 +109,10 @@ public class RoomEntity {
 		String bookingCode = RandomStringUtils.randomNumeric(10);
 		booking.setConfirmCode(bookingCode);
 	}
+	@OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<BookingEntity> bookings;
 
-
-	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
-    private List<BookingEntity> bookings;
+//	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+//    private List<BookingEntity> bookings;
 }

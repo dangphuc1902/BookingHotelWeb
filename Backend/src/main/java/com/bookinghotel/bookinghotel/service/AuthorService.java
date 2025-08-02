@@ -71,7 +71,7 @@ public class AuthorService implements AuthorServiceImp {
         userEntity.setEmail(user.getEmail());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
-        userEntity.setPassWord(passwordEncoder.encode(userEntity.getPassWord()));
+        userEntity.setPassWord(passwordEncoder.encode(user.getPassword()));
         RolesEntity roles = roleRepository.findByName("ROLE_USER").get();
         userEntity.setRole(roles);
         // Save userEntity to Respository.

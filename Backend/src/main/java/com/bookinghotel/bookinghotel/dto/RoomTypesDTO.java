@@ -10,15 +10,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RoomTypesDTO {
-    private String roomType;
+	private String roomType;
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
 
 }

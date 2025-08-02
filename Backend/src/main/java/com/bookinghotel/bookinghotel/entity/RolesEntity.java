@@ -1,5 +1,6 @@
 package com.bookinghotel.bookinghotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,11 +27,24 @@ public class RolesEntity {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<UserEntity> getUsers() {
+		return users;
+	}
+
 	@Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<UserEntity> users;
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<UserEntity> users;
 
 	public String getName() {
 		return name;
@@ -38,10 +52,6 @@ public class RolesEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<UserEntity> getUsers() {
-		return users;
 	}
 
 	public void setUsers(List<UserEntity> users) {

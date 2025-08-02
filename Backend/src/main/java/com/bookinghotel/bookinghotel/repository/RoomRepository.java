@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends JpaRepository<RoomEntity,Integer> {
-    @Query(" SELECT room FROM rooms room " +
+    @Query(" SELECT room FROM room room " +
             " WHERE room.roomType LIKE %:roomType% " +
             " AND room.id NOT IN (" +
             "  SELECT bookingroom.room.id FROM bookings bookingroom " +

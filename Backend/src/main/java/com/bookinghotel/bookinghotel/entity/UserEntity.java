@@ -36,9 +36,12 @@ public class UserEntity {
     @Column(name = "password")
     private String passWord;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private RolesEntity role;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", nullable = false)
+	private RolesEntity role;
+//	@ManyToOne
+//	@JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false, nullable = false)
+//    private RolesEntity role;
 
 	public int getId() {
 		return id;

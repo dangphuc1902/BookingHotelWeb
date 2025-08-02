@@ -10,7 +10,87 @@ import java.time.LocalDate;
 @Data
 @Entity(name = "bookings")
 public class BookingEntity {
-    @Id
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDate getCheck_in() {
+		return check_in;
+	}
+
+	public void setCheck_in(LocalDate check_in) {
+		this.check_in = check_in;
+	}
+
+	public LocalDate getCheck_out() {
+		return check_out;
+	}
+
+	public void setCheck_out(LocalDate check_out) {
+		this.check_out = check_out;
+	}
+
+	public int getAdults() {
+		return adults;
+	}
+
+	public void setAdults(int adults) {
+		this.adults = adults;
+	}
+
+	public int getChildren() {
+		return children;
+	}
+
+	public void setChildren(int children) {
+		this.children = children;
+	}
+
+	public int getTotalGuest() {
+		return totalGuest;
+	}
+
+	public void setTotalGuest(int totalGuest) {
+		this.totalGuest = totalGuest;
+	}
+
+	public String getConfirmCode() {
+		return confirmCode;
+	}
+
+	public void setConfirmCode(String confirmCode) {
+		this.confirmCode = confirmCode;
+	}
+
+	public String getGuestEmail() {
+		return guestEmail;
+	}
+
+	public void setGuestEmail(String guestEmail) {
+		this.guestEmail = guestEmail;
+	}
+
+	public String getGuestFullName() {
+		return guestFullName;
+	}
+
+	public void setGuestFullName(String guestFullName) {
+		this.guestFullName = guestFullName;
+	}
+
+	public RoomEntity getRoom() {
+		return room;
+	}
+
+	public void setRoom(RoomEntity room) {
+		this.room = room;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	@Column(name = "check_in")
@@ -36,8 +116,10 @@ public class BookingEntity {
 
     @Column(name = "guest_full_name")
     private String guestFullName;
-    @ManyToOne
-    @JoinColumn(name = "room_id")
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id", nullable = false)
     private RoomEntity room;
 
     public BookingEntity() {
@@ -58,4 +140,5 @@ public class BookingEntity {
 		this.guestFullName = guestFullName;
 		this.room = room;
 	}
+
 }
